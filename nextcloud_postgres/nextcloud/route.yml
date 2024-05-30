@@ -1,0 +1,16 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    app: nextcloud-route
+  name: nextcloud-route
+spec:
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  port:
+    targetPort: 8081-tcp
+  to:
+    kind: Service
+    name: nextcloud-service
+

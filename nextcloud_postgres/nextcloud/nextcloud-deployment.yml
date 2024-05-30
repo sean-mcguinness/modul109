@@ -1,0 +1,60 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: nextcloud-app
+  labels:
+    app: nextcloud-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nextcloud-app
+  template:
+    metadata:
+      labels:
+        app: nextcloud-app
+    spec:
+      containers:
+        - name: nextcloud-app
+          image: nextcloud:apache
+          imagePullPolicy: Always
+          env:
+            - name: POSTGRES_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: config-map
+                  key: POSTGRES_HOST
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: password
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: config-map
+                  key: POSTGRES_DB
+            - name: POSTGRES_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: config-map
+                  key: POSTGRES_USER
+          ports:
+            - containerPort: 8081
+              protocol: TCP
+          volumeMounts:
+            - name: nc-data
+              mountPath: /var/www/html
+            - name: config-volume
+              mountPath: /etc/apache2/sites-available/000-default.conf
+              subPath: 000-default.conf
+            - name: config-volume
+              mountPath: /etc/apache2/ports.conf
+              subPath: ports.conf
+      volumes:
+        - name: nc-data
+          persistentVolumeClaim:
+            claimName: nc-data
+        - name: config-volume
+          configMap:
+            name: nextcloud-config
