@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: frontend-config-map
 data:
-  BACKEND_URL: counter-backend-243738-seamcg.apps.exoscale-ch-gva-2-0.appuio.cloud
+  BACKEND_URL: https://counter-backend-243738-seamcg.apps.exoscale-ch-gva-2-0.appuio.cloud

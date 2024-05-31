@@ -19,21 +19,26 @@ spec:
           image: ghcr.io/sean-mcguinness/counter-backend:v1
           imagePullPolicy: Always
           env:
-            - name: POSTGRESQL_USER
+            - name: DB_USER
               valueFrom:
                 secretKeyRef:
                   name: counter-database
                   key: database-user
-            - name: POSTGRESQL_PASSWORD
+            - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: counter-database
                   key: database-password
-            - name: POSTGRESQL_DATABASE
+            - name: DB_NAME 
               valueFrom:
                 secretKeyRef:
                   name: counter-database
                   key: database-name
+            - name: PASSPHRASE
+              valueFrom:
+                secretKeyRef:
+                  name: counter-database
+                  key: passphrase
             - name: DB_HOST
               valueFrom:
                 configMapKeyRef:
