@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: counter-database
+type: Opaque
+stringData:
+  database-name: counter
+  database-user: postgres1
+  database-password: password
