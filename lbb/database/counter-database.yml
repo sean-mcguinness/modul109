@@ -3,7 +3,7 @@ kind: Secret
 metadata:
   name: counter-database
 type: Opaque
-stringData:
-  database-name: counter
-  database-user: postgres1
-  database-password: password
+data:
+  database-name: Y291bnRlcg==
+  database-user: cG9zdGdyZXMx
+  database-password: cGFzc3dvcmQ=

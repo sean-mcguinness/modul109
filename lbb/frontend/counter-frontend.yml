@@ -24,6 +24,8 @@ spec:
                 configMapKeyRef:
                   name: frontend-config-map
                   key: BACKEND_URL
+            - name: npm_config_cache
+              value: ./.npm-cache
           ports:
             - containerPort: 3100
               protocol: TCP

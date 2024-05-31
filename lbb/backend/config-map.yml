@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: config-map
 data:
-  DB_HOST: db
+  DB_HOST: counter-database

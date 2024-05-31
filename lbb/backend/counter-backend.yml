@@ -39,6 +39,8 @@ spec:
                 configMapKeyRef:
                   name: config-map
                   key: DB_HOST
+            - name: NODE_ENV
+              value: production
           ports:
             - containerPort: 8080
               protocol: TCP
